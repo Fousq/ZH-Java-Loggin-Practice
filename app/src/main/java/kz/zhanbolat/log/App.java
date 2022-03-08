@@ -3,12 +3,14 @@
  */
 package kz.zhanbolat.log;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    private static final Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        logger.info("Hello World");
+        logger.error("DEBUG HELLO");
     }
 }

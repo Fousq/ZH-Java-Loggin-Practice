@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+    <Appenders>
+        <Console name="InfoOut" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} infoOut %logger{36} - %msg%n"/>
+        </Console>
+        <Console name="Out" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="kz.zhanbolat.log.App" level="info" additivity="false">
+            <AppenderRef ref="InfoOut"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="Out"/>
+        </Root>
+    </Loggers>
+</Configuration>
