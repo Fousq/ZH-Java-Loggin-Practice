@@ -3,12 +3,21 @@
  */
 package kz.zhanbolat.log;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.LocalDateTime;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        ScheduledThreadPoolExecutor schedule = new ScheduledThreadPoolExecutor(Runtime.getRuntime().availableProcessors() / 2);
+        schedule.scheduleAtFixedRate(() -> logger.info("Log the schedule thread execution at {}", LocalDateTime.now()), 1, 10, TimeUnit.SECONDS);
+        while(true) {
+            // run loop
+        }
     }
 }
