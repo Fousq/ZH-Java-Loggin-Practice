@@ -7,11 +7,15 @@
     </appender>
 
     <appender name="FILELOG" class="ch.qos.logback.core.FileAppender" >
-        <file>${LOG_PATH}/schedule-job.log</file>
+        <file>${LOG_PATH}/schedule-job-elk.log</file>
         <immediateFlush>true</immediateFlush>
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <appender name="LogStash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>127.0.0.1:5000</destination>
+
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
     <root level="info">
